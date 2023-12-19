@@ -13,12 +13,12 @@ const Cart = () => {
   const generateWhatsAppMessage = () => {
     const message = cartItems.map((item) => {
       return `${item.name} 
-      no.of packets :(${item.quantity})`;
+      no.of packets :${item.quantity}`;
     });
     return message.join('\n');
   };
 
-  const whatsappMessage = `https://wa.me/918341735406?text=${encodeURIComponent(
+  const whatsappMessage = `https://wa.me/918247036610?text=${encodeURIComponent(
     generateWhatsAppMessage()
   )}`;
 
