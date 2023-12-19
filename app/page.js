@@ -25,7 +25,7 @@ export default function App() {
   return (
     <main className="">
       <div className="fixed w-screen h-14">
-        <div className='bg-green-200 lg:w-1/2 md:w-3/4 sm:w-3/4 lg:h-14 md:h-14 sm:h-14'>
+        <div className='bg-green-200'>
           <Link
             activeClass="active"
             to="home"
