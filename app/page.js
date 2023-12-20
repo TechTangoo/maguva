@@ -27,7 +27,7 @@ export default function App() {
   return (
     <main className="">
       <div className="fixed w-screen h-14 flex justify-center mt-5">
-        <div className='bg-green-100 flex items-center lg:w-1/2 md:w-3/4 sm:w-3/4 lg:h-14 md:h-14 sm:h-14 rounded-full'>
+        <div className='bg-green-100 flex items-center lg:w-1/2 md:w-3/4 sm:w-3/4 lg:h-14 md:h-14 sm:h-14 rounded-full shadow-md'>
           <div className='flex flex-1 justify-evenly items-center'>
             <Link
               activeClass="active"
