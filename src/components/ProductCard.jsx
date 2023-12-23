@@ -61,7 +61,7 @@ const ProductCard = () => {
       ))}
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center flex-wrap z-50">
-          <div className="bg-white p-6 rounded w-2/3">
+          <div className="bg-white p-6 rounded w-1/3 lg:w-2/3">
             <div className="flex justify-between items-center mb-4">
               <h2 className="font-bold text-xl text-amber-600" style={{fontWeight: 800, fontFamily:'Nunito, sans-serif', fontSize: 30}}>{selectedProduct.name}</h2>
               <div onClick={handleModalClose} className='cursor-pointer text-2xl'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
