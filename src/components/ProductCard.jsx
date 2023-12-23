@@ -59,7 +59,7 @@ const ProductCard = () => {
       {products.map((product, index) => (
         <div
           key={index}
-          className="border flex-shrink-0 border-gray-300 p-4 rounded cursor-pointer shadow-xl transition duration-300"
+          className="border bg-white flex-shrink-0 border-gray-300 p-4 rounded cursor-pointer shadow-xl transition duration-300"
           onClick={() => handleButtonClick(product)}
         >
           {product.src && (

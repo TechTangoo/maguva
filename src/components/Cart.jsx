@@ -74,7 +74,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="container mx-auto p-8">
+    <div className="w-screen h-screen bg-amber-100">
       <div className='flex flex-1 items-center justify-between'>
         <div onClick={() => navigate(-1)} className='flex text-amber-800 bg-amber-100 p-3 rounded-3xl cursor-pointer hover:bg-amber-200'>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">

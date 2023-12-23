@@ -29,7 +29,7 @@ export default function App() {
     const [url, setUrl] = useState('home');
 
     return (
-        <main className="bg-opacity-10" style={{  backgroundRepeat: 'repeat', backgroundSize: 'contain', backgroundAttachment:'fixed' }}>
+        <main className="bg-fixed bg-amber-100 bg-opacity-10 bg-no-repeat" style={{ background:'#fef3c7',  backgroundRepeat: 'repeat', backgroundSize: 'contain', backgroundAttachment:'fixed' }}>
             <div className="fixed z-50 w-screen flex-1 h-14 flex justify-center mt-5">
                 <div className='bg-amber-100 flex items-center lg:w-1/2 md:w-3/4 sm:w-3/4 w-3/4 h-14 rounded-full shadow-md'>
                     <div className='flex flex-1 justify-evenly items-center'>
