@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import products from '../fakebackend';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import toast, { Toaster } from 'react-hot-toast';
 
 const ProductCard = () => {
   const [showModal, setShowModal] = useState(false);
@@ -33,22 +32,17 @@ const ProductCard = () => {
     const updatedCart = [...existingCart, cartItem];
     localStorage.setItem('cart', JSON.stringify(updatedCart));
 
-    toast('Added to cart Successfully', {
-      position: 'top-right',
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      style: { backgroundColor: '#D1FAE5', color: '#000000' },
-    });
+    toast.success('Added to cart Successfully');
 
     setShowModal(false);
   };
 
   return (
     <div className="flex gap-3">
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       {products.map((product, index) => (
         <div
           key={index}
@@ -66,7 +60,7 @@ const ProductCard = () => {
         </div>
       ))}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center flex-wrap z-50">
           <div className="bg-white p-6 rounded w-2/3">
             <div className="flex justify-between items-center mb-4">
               <h2 className="font-bold text-xl text-amber-600" style={{fontWeight: 800, fontFamily:'Nunito, sans-serif', fontSize: 30}}>{selectedProduct.name}</h2>
@@ -74,7 +68,7 @@ const ProductCard = () => {
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
               </svg></div>
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-4 flex-wrap">
               <div className="flex-shrink-0">
                 {selectedProduct.iframelink && (
                   <iframe
@@ -116,18 +110,6 @@ const ProductCard = () => {
           </div>
         </div>
       )}
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
     </div>
   );
 };

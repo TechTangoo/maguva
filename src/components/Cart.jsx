@@ -1,9 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -33,7 +34,16 @@ const Cart = () => {
 
   return (
     <div className="container mx-auto p-8">
-      <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
+      <div className='flex flex-1 items-center justify-between'>
+        <div onClick={() => navigate(-1)} className='flex text-amber-800 bg-amber-100 p-3 rounded-3xl cursor-pointer hover:bg-amber-200'>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+          </svg>
+          Go back
+        </div>
+        <h1 className="text-3xl text-amber-500 font-bold mb-6" style={{fontFamily:'Nunito,sans-serif', fontWeight: 800, fontSize: 28}}>Your Cart</h1>
+        <div></div>
+      </div>
       <div className="mb-4">
         <button
           className="bg-amber-500 text-white px-4 py-2 rounded mr-4"
