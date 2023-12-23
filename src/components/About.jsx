@@ -7,8 +7,8 @@ export default function About() {
   };
 
   return (
-    <div id='about' className="flex min-h-screen flex-row items-center justify-between p-12 md:p-24 bg-gray-100">
-      <div className='flex flex-col max-w-lg'>
+    <div id='about' className="flex flex-row items-center justify-between p-12 md:p-24">
+      <div className='flex flex-col max-w-lg flex-1'>
         <h2 className='font-palanquin text-4xl font-bold text-amber-500 mb-4 lg:max-w-lg' style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800 }}>Welcome to Maguva</h2>
         <p className='text-amber-800 text-xl font-bold mb-6 italic'>Where Health Meets Taste</p>
         <p className='text-gray-600 leading-7' style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800 }}>
@@ -21,7 +21,7 @@ export default function About() {
           When you choose Maguva, you're not just buying a product - you're joining us on a journey to discover the endless possibilities of flavor and nutrition.
         </p>
       </div>
-      <div className='flex items-center m-3'>
+      <div className='flex-1 items-center m-3'>
         <img src={spiceMixImage} alt='Masale Spice Mix' className='max-w-full rounded-md shadow-lg' />
       </div>
     </div>
