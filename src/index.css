@@ -13,9 +13,4 @@
     width: 0px; /* WebKit */
     display: none; /* Safari and Chrome */
   }
-
-    input:focus, textarea:focus {
-      outline: none;
-      border: none;
-    }
   

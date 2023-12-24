@@ -1,6 +1,8 @@
+import maguvalogo from '../assets/Maguvalogo.jpeg'
+
 export default function Footer() {
   return (
-    <div id='footer' className="flex h-80 bg-amber-200 flex-col justify-between p-12">
+    <div id='footer' className="flex h-80 bg-amber-200 flex-col justify-between p-12 flex-wrap">
       <h3 className='text-amber-700' style={{ fontFamily: 'Nunito, sans-serif', fontSize: 24, fontWeight: 800 }}>Contact Us</h3>
       <div style={{ alignItems: 'center' }}>
         <p style={{ fontFamily: 'Nunito, sans-serif', fontSize: 16, fontWeight: 700 }} className="flex"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -15,6 +17,10 @@ export default function Footer() {
       <p className="flex" style={{ fontFamily: 'Nunito, sans-serif', fontSize: 16 }}> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
       </svg>supriyachevula@gmail.com</p>
+      <div>
+        
+      </div>
     </div>
+
   )
 }
