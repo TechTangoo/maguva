@@ -5,12 +5,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap');
 
 .hide-scrollbar {
-    scrollbar-width: thin; /* Firefox */
-    -ms-overflow-style: none; /* Internet Explorer 11 */
-  }
-  
-  .hide-scrollbar::-webkit-scrollbar {
-    width: 0px; /* WebKit */
-    display: none; /* Safari and Chrome */
-  }
-  
+  scrollbar-width: thin;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer 11 */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0px;
+  /* WebKit */
+  display: none;
+  /* Safari and Chrome */
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border: none;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff0e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollcki-bar-thumb:hover {
+  background: #555;
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+  overflow-x: hidden;
+}

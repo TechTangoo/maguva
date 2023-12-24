@@ -14,7 +14,7 @@ export default function Home() {
           minHeight: '600px', // You can adjust this value based on your design
           alignItems: 'center',
         }}
-          className='h-5/6 w-screen'>
+          className='w-screen'>
           <div className='flex flex-1 justify-center flex-col'>
             <p className='text-5xl lg:text-7xl text-amber-300 text-center' style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 1000 }}>Authentic Andra Powder</p>
             <p className='text-xl lg:text-2xl text-amber-200 text-center' style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 600 }}>Homemade masala powders<subscript>®</subscript></p>
