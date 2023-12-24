@@ -25,7 +25,7 @@ textarea:focus {
 }
 
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -33,7 +33,7 @@ textarea:focus {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #3a353559;
   border-radius: 5px;
 }
 
