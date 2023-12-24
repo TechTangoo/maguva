@@ -99,8 +99,8 @@ const ProductCard = () => {
               <div className="flex flex-col flex-1">
                 <p className="font-bold mb-3 text-amber-700" style={{ fontWeight: 800, fontFamily: 'Nunito, sans-serif', fontSize: 24 }}>Health Benefits</p>
                 <ul className="list-disc pl-4 mb-3">
-                  {selectedProduct.health.split(',').map((benefit, index) => (
-                    <li key={index} style={{ fontWeight: 600, fontFamily: 'Nunito, sans-serif', fontSize: 18 }}>{benefit.trim()}</li>
+                  {selectedProduct.health.split('.').map((benefit, index) => (
+                    benefit  && <li key={index} style={{ fontWeight: 600, fontFamily: 'Nunito, sans-serif', fontSize: 18 }}>{benefit.trim()}</li>
                   ))}
                 </ul>
                 <p className="mb-3" style={{ fontWeight: 600, fontFamily: 'Nunito, sans-serif', fontSize: 18 }}>Ingredients used: {selectedProduct.ingredient}</p>
@@ -131,8 +131,8 @@ const ProductCard = () => {
                   </button>
                 </div>
                 <label htmlFor="packets" className="mr-2 text-amber-700 mb-2" style={{ fontWeight: 800, fontFamily: 'Nunito, sans-serif', fontSize: 20 }}>
-                   Net Wt: <span className='text-black'>250gm  each</span>
-                  </label>
+                  Net Wt: <span style={{ fontWeight: 400 }} className='text-black'>250gm</span>
+                </label>
                 <div className='flex gap-4 items-center  mb-10'><p className='text-xl text-amber-700' style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800 }}>Total cost: </p> <p style={{ fontFamily: 'Nunito, sans-serif', fontSize: 20 }}>₹ {selectedPackets * parseInt(selectedProduct.price)}</p></div>
                 <div className='flex flex-1 justify-center'>
                   <button

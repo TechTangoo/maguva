@@ -22,14 +22,23 @@ const smoothScrollTo = (targetId) => {
 
 export default function App() {
     const navigate = useNavigate();
+    const [cart, setCart] = useState(false);
+
+    useEffect(() => {
+        const cartItem = localStorage.getItem('cart');
+        if (cartItem) setCart(true);
+        else setCart(false);
+    }, [])
     const handleClick = () => {
         navigate('/cart');
     }
 
+
+
     const [url, setUrl] = useState('home');
 
     return (
-        <main className="bg-fixed bg-amber-100 bg-opacity-10 bg-no-repeat" style={{ background:'#fef3c7',  backgroundRepeat: 'repeat', backgroundSize: 'contain', backgroundAttachment:'fixed' }}>
+        <main className="bg-fixed bg-amber-100 bg-opacity-10 bg-no-repeat" style={{ background: '#fef3c7', backgroundRepeat: 'repeat', backgroundSize: 'contain', backgroundAttachment: 'fixed' }}>
             <div className="fixed z-50 w-screen flex-1 h-14 flex justify-center mt-5">
                 <div className='bg-amber-100 flex items-center lg:w-1/2 md:w-3/4 sm:w-3/4 w-3/4 h-14 rounded-full shadow-md'>
                     <div className='flex flex-1 justify-evenly items-center'>
@@ -97,10 +106,15 @@ export default function App() {
                                 <p className='hidden lg:flex md:hidden sm:hidden'>Contact Us</p>
                             </div>
                         </Link>
-                        <div className='cursor-pointer' onClick={() => handleClick()}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" dataslot="icon" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                            </svg>
+                        <div className="cursor-pointer flex items-center" onClick={() => handleClick()}>
+                            <div className="relative">
+                                <div className="rounded-full h-8 w-8 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                    </svg>
+                                </div>
+                                {cart && <span className="absolute w-3 h-3 top-0 right-0 bg-amber-600 text-white rounded-full px-1"></span>}
+                            </div>
                         </div>
                     </div>
                 </div>

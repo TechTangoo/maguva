@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import empty from '../assets/emptycart.svg'
 import emailjs from 'emailjs-com';
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -101,21 +102,21 @@ const Cart = () => {
     const serviceId = 'service_xt0nsv5';
     const templateId = 'template_qi790mu';
     const pubKey = '9ulhK9fpiMZgwgoTb';
-  
+
     setLoading(true); // Move setLoading(true) here to start loading
-  
+
     const cartItemsContent = Object.values(cartItems.reduce((accumulator, item) => {
-        accumulator[item.name] = accumulator[item.name] || { quantity: 0, name: item.name };
-        accumulator[item.name].quantity += item.quantity;
-        accumulator[item.name].src = item.src;
-        accumulator[item.name].price = item.price;
-        return accumulator;
-      }, {})).map(
-        (item) =>
-          `${item.name} ${item.quantity} qty. ${parseInt(
-            item.price
-          ) * parseInt(item.quantity)} rs \n`
-      )
+      accumulator[item.name] = accumulator[item.name] || { quantity: 0, name: item.name };
+      accumulator[item.name].quantity += item.quantity;
+      accumulator[item.name].src = item.src;
+      accumulator[item.name].price = item.price;
+      return accumulator;
+    }, {})).map(
+      (item) =>
+        `${item.name} ${item.quantity} qty. ${parseInt(
+          item.price
+        ) * parseInt(item.quantity)} rs \n`
+    )
 
     const content = `${cartItemsContent.join('')}`;
 
@@ -152,7 +153,7 @@ const Cart = () => {
         Go back
       </div>
       <h1 className="text-3xl text-amber-500 font-bold mb-6 text-center" style={{ fontFamily: 'Nunito,sans-serif', fontWeight: 800, fontSize: 28 }}>Your Cart</h1>
-      {Object.values(cartItems.reduce((accumulator, item) => {
+      {cartItems && cartItems.length ? <div>{Object.values(cartItems.reduce((accumulator, item) => {
         accumulator[item.name] = accumulator[item.name] || { quantity: 0, name: item.name };
         accumulator[item.name].quantity += item.quantity;
         accumulator[item.name].src = item.src;
@@ -161,7 +162,7 @@ const Cart = () => {
       }, {})).map((groupedItem, index) => (
         <div key={index} className="mb-2 ml-10 rounded-xl bg-white shadow-md w-3/4 p-5 flex flex-1 justify-between items-center">
           <div>
-            <strong className='text-xl' style={{ fontFamily: 'Nunito, sans-serif' }}>{groupedItem.name}</strong> <br></br>
+            <strong className='text-xl' style={{ fontFamily: 'Nunito, sans-serif' }}>{groupedItem.name} 250g</strong><br></br>
             <div className='flex gap-2'>
               <p style={{ fontFamily: 'Nunito, sans-serif' }}>Quantity</p>
               <button className="bg-red-700 hover:bg-red-600 p-1 rounded" onClick={() => handleDecreaseQuantity(groupedItem.name)}>
@@ -188,32 +189,34 @@ const Cart = () => {
           <div className='text-green-700 text-xl' style={{ fontWeight: 700, fontFamily: 'Nunito,sans-serif' }}>₹ {parseInt(groupedItem.quantity) * parseInt(groupedItem.price)}</div>
         </div>
       ))}
-      <div className='mb-2 p-3 mt-2 ml-10 w-3/4 flex flex-1 gap-5 flex-wrap justify-between items-center'>
-        <button
-          className="bg-red-500 text-white px-4 py-2 rounded"
-          style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700 }}
-          onClick={handleClearCart}
-        >
-          Clear All Items
-        </button>
-        <p className='text-md text-amber-700' style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700 }}>Total Amount : <span className="text-green-700" style={{ fontWeight: 800, fontSize: 20 }}>₹ {total}</span></p>
-      </div>
-  
-      <div className="flex flex-1 flex-col justify-center items-center gap-7">
-      <p className='px-5' style={{ fontWeight: 600, fontFamily: 'Nunito, sans-serif' }}>Net WT :<span className=' text-amber-800 text-2xl'>250gm</span> each packet</p>
-        <p className='px-5' style={{ fontWeight: 600, fontFamily: 'Nunito, sans-serif' }}>* To confirm your order, click on checkout and we get back to you soon.</p>
-        <button
-          className="bg-amber-500 w-1/4 min-w-60 hover:bg-amber-600 items-center text-white flex flex-1 justify-center px-4 py-2 rounded-full mr-4"
-          onClick={handleCheckout}
-          style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, textAlign: 'center' }}
-        >
-          <p>Checkout</p>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
-          </svg>
-        </button>
-      </div>
-  
+        <div className='mb-2 p-3 mt-2 ml-10 w-3/4 flex flex-1 gap-5 flex-wrap justify-between items-center'>
+          <button
+            className="bg-red-500 text-white px-4 py-2 rounded"
+            style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700 }}
+            onClick={handleClearCart}
+          >
+            Clear All Items
+          </button>
+          <p className='text-md text-amber-700' style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700 }}>Total Amount : <span className="text-green-700" style={{ fontWeight: 800, fontSize: 20 }}>₹ {total}</span></p>
+        </div>
+
+        <div className="flex flex-1 flex-col justify-center items-center gap-7">
+          <p className='px-5' style={{ fontWeight: 600, fontFamily: 'Nunito, sans-serif' }}>* To confirm your order, click on checkout and we get back to you soon.</p>
+          <button
+            className="bg-amber-500 w-1/4 min-w-60 hover:bg-amber-600 items-center text-white flex flex-1 justify-center px-4 py-2 rounded-full mr-4"
+            onClick={handleCheckout}
+            style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, textAlign: 'center' }}
+          >
+            <p>Checkout</p>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+            </svg>
+          </button>
+        </div>
+      </div> : <div className='flex flex-1 flex-col gap-3 justify-center h-1/2 items-center'>
+          <img src={empty} alt='empty cart' className='w-1/4' />
+          <p style={{ fontFamily:'Nunito'}}>Your cart is empty.</p>
+      </div>}
       {showModal && (
         <div className="fixed overflow-scroll inset-0 bg-black bg-opacity-50 flex items-center justify-center flex-wrap z-50">
           <div className="bg-white p-6 rounded w-3/4 lg:w-2/3">
@@ -249,7 +252,7 @@ const Cart = () => {
       )}
     </div>
   );
-  
+
 };
 
 export default Cart;
