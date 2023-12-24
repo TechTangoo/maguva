@@ -130,6 +130,9 @@ const ProductCard = () => {
                     </svg>
                   </button>
                 </div>
+                <label htmlFor="packets" className="mr-2 text-amber-700 mb-2" style={{ fontWeight: 800, fontFamily: 'Nunito, sans-serif', fontSize: 20 }}>
+                   {" "} Net Wt: <span className='text-black'>250gm</span>
+                  </label>
                 <div className='flex gap-4 items-center  mb-10'><p className='text-xl text-amber-700' style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800 }}>Total cost: </p> <p style={{ fontFamily: 'Nunito, sans-serif', fontSize: 20 }}>₹ {selectedPackets * parseInt(selectedProduct.price)}</p></div>
                 <div className='flex flex-1 justify-center'>
                   <button

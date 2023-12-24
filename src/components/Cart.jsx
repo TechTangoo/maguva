@@ -200,7 +200,8 @@ const Cart = () => {
       </div>
   
       <div className="flex flex-1 flex-col justify-center items-center gap-7">
-        <p className='px-5' style={{ fontWeight: 600, fontFamily: 'Nunito, sans-serif' }}>* To confirm your order, click on checkout. This takes you to whatsapp, you can send message of your order details to us and we get back to you soon.</p>
+      <p className='px-5' style={{ fontWeight: 600, fontFamily: 'Nunito, sans-serif' }}>Net WT :<span className=' text-amber-800 text-2xl'>250gm</span> each packet</p>
+        <p className='px-5' style={{ fontWeight: 600, fontFamily: 'Nunito, sans-serif' }}>* To confirm your order, click on checkout and we get back to you soon.</p>
         <button
           className="bg-amber-500 w-1/4 min-w-60 hover:bg-amber-600 items-center text-white flex flex-1 justify-center px-4 py-2 rounded-full mr-4"
           onClick={handleCheckout}
