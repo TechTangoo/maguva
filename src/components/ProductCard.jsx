@@ -21,9 +21,12 @@ const ProductCard = () => {
   };
 
   const handleAddToCart = () => {
+    console.log('selectedPackets', selectedProduct)
     const cartItem = {
       name: selectedProduct.name,
       quantity: selectedPackets,
+      src: selectedProduct.src,
+      price: selectedProduct.price
     };
     const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
     setIsFirstItemAdded(existingCart.length === 0);
@@ -101,12 +104,12 @@ const ProductCard = () => {
                   ))}
                 </ul>
                 <p className="mb-3" style={{ fontWeight: 600, fontFamily: 'Nunito, sans-serif', fontSize: 18 }}>Ingredients used: {selectedProduct.ingredient}</p>
-                <div className='flex items-center mb-10'>
+                <div className='flex items-center mb-5'>
                   <label htmlFor="packets" className="mr-2 text-amber-700" style={{ fontWeight: 800, fontFamily: 'Nunito, sans-serif', fontSize: 20 }}>
                     No. of Packets:
                   </label>
 
-                  <button className="bg-red-700 hover:bg-red-600 p-1 rounded" onClick={() => setSelectedPackets(selectedPackets - 1)}>
+                  <button className="bg-red-700 hover:bg-red-600 p-1 rounded" onClick={() => selectedPackets > 1 ? setSelectedPackets(selectedPackets - 1) : null}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
                     </svg>
@@ -115,8 +118,9 @@ const ProductCard = () => {
                     id="packets"
                     type="number"
                     value={selectedPackets >= 1 ? selectedPackets : 1}
-                    onChange={(e) =>
-                      setSelectedPackets(Math.max(1, Number(e.target.value)))
+                    onChange={(e) => {
+                      if (parseInt(e.target.value) >= 1) setSelectedPackets(Math.max(1, Number(e.target.value)))
+                    }
                     }
                     className="p-1 w-16"
                   />
@@ -126,6 +130,7 @@ const ProductCard = () => {
                     </svg>
                   </button>
                 </div>
+                <div className='flex gap-4 items-center  mb-10'><p className='text-xl text-amber-700' style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800 }}>Total cost: </p> <p style={{ fontFamily: 'Nunito, sans-serif', fontSize: 20 }}>₹ {selectedPackets * parseInt(selectedProduct.price)}</p></div>
                 <div className='flex flex-1 justify-center'>
                   <button
                     className="bg-amber-500 text-white px-4 py-2 rounded-full hover:bg-amber-600 w-1/2"
