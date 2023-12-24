@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import emailjs from 'emailjs-com';
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -92,10 +93,39 @@ const Cart = () => {
     totalAll?.map((item) => result += item);
     setTotal(result);
   }, [cartItems]);
-
   const handleConfirm = () => {
-
-  }
+    if (!email.name || !email.contactno || !email.address) {
+      alert('Please fill in all the required details.');
+      return;
+    }
+    const serviceId = 'service_xt0nsv5';
+    const templateId = 'template_qi790mu';
+    const pubKey = '9ulhK9fpiMZgwgoTb';
+  
+    setLoading(true); // Move setLoading(true) here to start loading
+  
+    emailjs
+      .send(serviceId, templateId, {
+        to_email: 'maguvabusiness@gmail.com',
+        from_name: email.name,
+        from_email: 'cutomermaguva@gmail.com',
+        contactno: email.contactno,
+        address: email.address,
+        cartItems: cartItems.map((items) => `${items.name} - Quantity: ${items.quantity}`).join('\n'),
+      }, pubKey)
+      .then((response) => {
+        console.log(response);
+        alert('Order confirmed! You will receive an email shortly.');
+        setShowModal(false);
+      })
+      .catch((error) => {
+        console.error('Error confirming order:', error);
+        alert('Failed to confirm order. Please try again.');
+      })
+      .finally(() => {
+        setLoading(false); // Move setLoading(false) here to stop loading
+      });
+  };
 
   return (
     <div className="w-screen h-screen bg-amber-100 items-center">
@@ -152,7 +182,7 @@ const Cart = () => {
         </button>
         <p className='text-md text-amber-700' style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700 }}>Total Amount : <span className="text-green-700" style={{ fontWeight: 800, fontSize: 20 }}>₹ {total}</span></p>
       </div>
-
+  
       <div className="flex flex-1 flex-col justify-center items-center gap-7">
         <p className='px-5' style={{ fontWeight: 600, fontFamily: 'Nunito, sans-serif' }}>* To confirm your order, click on checkout. This takes you to whatsapp, you can send message of your order details to us and we get back to you soon.</p>
         <button
@@ -165,9 +195,8 @@ const Cart = () => {
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
           </svg>
         </button>
-
       </div>
-
+  
       {showModal && (
         <div className="fixed overflow-scroll inset-0 bg-black bg-opacity-50 flex items-center justify-center flex-wrap z-50">
           <div className="bg-white p-6 rounded w-3/4 lg:w-2/3">
@@ -187,14 +216,23 @@ const Cart = () => {
               <input className='p-3 bg-amber-100 rounded-full border-none focus:border-none' style={{ fontFamily: 'Nunito' }} value={email?.contactno ?? ''} type='number' onChange={(e) => setEmail({ ...email, contactno: e.target.value })} placeholder='10 digits' />
               <label className='mt-5 ml-4' style={{ fontFamily: 'Nunito' }}>Post Address</label>
               <textarea className='p-3 bg-amber-100 rounded-full border-none focus:border-none' style={{ fontFamily: 'Nunito', lineHeight: 1.5, resize: 'vertical' }} value={email?.address ?? ''} onChange={(e) => setEmail({ ...email, address: e.target.value })} placeholder='eg. #19, 5th cross, 3rd Main road, Amir Nagar, Nellore, AndraPradesh -  570036' />
-              <div className='flex flex-1 justify-center mt-10'><button className='p-3 bg-amber-500 w-2/3 min-w-60 rounded-full shadow-md hover:bg-amber-600 text-white text-xl' onClick={handleConfirm} style={{ fontFamily: 'Nunito', fontWeight: 800 }} >Confirm</button></div>
+              <div className='flex flex-1 justify-center mt-10'>
+                <button
+                  className='p-3 bg-amber-500 w-2/3 min-w-60 rounded-full shadow-md hover:bg-amber-600 text-white text-xl'
+                  onClick={handleConfirm}
+                  style={{ fontFamily: 'Nunito', fontWeight: 800 }}
+                  disabled={loading} // Disable the button while loading
+                >
+                  {loading ? 'Confirming...' : 'Confirm'}
+                </button>
+              </div>
             </div>
           </div>
         </div>
       )}
-
     </div>
   );
+  
 };
 
 export default Cart;
