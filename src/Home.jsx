@@ -28,7 +28,7 @@ export default function App() {
         const cartItem = localStorage.getItem('cart');
         if (cartItem) setCart(true);
         else setCart(false);
-    }, [])
+    }, [localStorage.getItem('cart')])
     const handleClick = () => {
         navigate('/cart');
     }
