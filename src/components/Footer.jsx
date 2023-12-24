@@ -4,9 +4,9 @@ export default function Footer() {
   return (
     <div id='footer' className="flex h-90 flex-1 bg-amber-200 flex-col p-12">
       <h3 className='text-amber-700' style={{ fontFamily: 'Nunito, sans-serif', fontSize: 24, fontWeight: 800 }}>Contact Us</h3>
-      <div className=' flex gap-4'>
+      <div className=' flex gap-4 flex-wrap'>
         <img src={logo} className='w-32 bg-white p-2 rounded-full' />
-        <div>
+        <div className=''>
           <div style={{ alignItems: 'center' }}>
             <p style={{ fontFamily: 'Nunito, sans-serif', fontSize: 16, fontWeight: 700 }} className="flex"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
