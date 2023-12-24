@@ -104,6 +104,21 @@ const Cart = () => {
   
     setLoading(true); // Move setLoading(true) here to start loading
   
+    const cartItemsContent = Object.values(cartItems.reduce((accumulator, item) => {
+        accumulator[item.name] = accumulator[item.name] || { quantity: 0, name: item.name };
+        accumulator[item.name].quantity += item.quantity;
+        accumulator[item.name].src = item.src;
+        accumulator[item.name].price = item.price;
+        return accumulator;
+      }, {})).map(
+        (item) =>
+          `${item.name} ${item.quantity} qty. ${parseInt(
+            item.price
+          ) * parseInt(item.quantity)} rs \n`
+      )
+
+    const content = `${cartItemsContent.join('')}`;
+
     emailjs
       .send(serviceId, templateId, {
         to_email: 'maguvabusiness@gmail.com',
@@ -111,7 +126,8 @@ const Cart = () => {
         from_email: 'cutomermaguva@gmail.com',
         contactno: email.contactno,
         address: email.address,
-        cartItems: cartItems.map((items) => `${items.name} - Quantity: ${items.quantity}`).join('\n'),
+        cartItems: content,
+        customer_email: email.email
       }, pubKey)
       .then((response) => {
         console.log(response);
@@ -123,7 +139,7 @@ const Cart = () => {
         alert('Failed to confirm order. Please try again.');
       })
       .finally(() => {
-        setLoading(false); // Move setLoading(false) here to stop loading
+        setLoading(false);
       });
   };
 
