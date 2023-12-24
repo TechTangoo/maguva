@@ -1,4 +1,4 @@
-import heroImage from "../assets/heroimage.jpg";
+import heroImage from "../assets/heroimage.png";
 
 export default function Home() {
   return (
@@ -14,21 +14,22 @@ export default function Home() {
             flex: 1,
             minHeight: "600px", // You can adjust this value based on your design
             alignItems: "center",
+            backgroundColor:'white'
           }}
-          className="w-screen"
+          className="w-screen bg-opacity-0"
         >
-          <div className="flex flex-1 justify-center flex-col">
+          <div className="flex flex-1 justify-center flex-col z-20">
             <p
-              className="text-5xl lg:text-7xl text-amber-300 text-center"
+              className="text-5xl lg:text-7xl text-amber-200 text-center"
               style={{ fontFamily: "Nunito, sans-serif", fontWeight: 1000 }}
             >
-              Maguva Healthy Foods
+              Maguva Healthy Foods<sup className="text-xl">®</sup>
             </p>
             <p
               className="text-xl lg:text-2xl text-amber-200 text-center"
               style={{ fontFamily: "Nunito, sans-serif", fontWeight: 600 }}
             >
-              Homemade masala powders<subscript>®</subscript>
+              Homemade masala powders
             </p>
           </div>
         </div>
